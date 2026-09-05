@@ -18,11 +18,12 @@ const Hero = ({ displayText, handleDownload, downloadState }) => (
             <span className="hero-role-icon">
               <i className="fas fa-laptop-code"></i>
             </span>
-            Backend Engineer &amp; Full Stack Developer
+            Java Backend Engineer &amp; Full Stack Developer
           </h2>
           <p className="lead hero-lead mb-4 selectable-text">
-            I design and build scalable, production-ready backend systems with Java and
-            Spring Boot. Passionate about clean architecture, reliable APIs, and solving
+            Java Backend Engineer with 1+ year of experience building and supporting
+            enterprise applications with Java, Spring Boot, REST APIs, and Microservices.
+            Passionate about clean architecture, reliable APIs, and solving
             real-world problems with maintainable code.
           </p>
 

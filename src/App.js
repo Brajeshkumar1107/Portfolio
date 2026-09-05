@@ -8,6 +8,7 @@ import About from './About';
 import Skills from './Skills';
 import Projects from './Projects';
 import Experience from './Experience';
+import Education from './Education';
 import Footer from './Footer';
 import BackToTop from './BackToTop';
 
@@ -36,7 +37,7 @@ function App() {
 
   // Add scroll detection for navbar + active section highlighting
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'skills', 'projects', 'experience'];
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'education'];
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
@@ -58,9 +59,12 @@ function App() {
 
   const handleDownload = () => {
     setDownloadState('downloading');
-    // Open the resume (hosted on Google Drive) in a new tab
-    const resumeUrl = 'https://drive.google.com/file/d/1dwMFnWSuR2EpXME1WyI2ZepUNCaQ4pSi/view?usp=sharing';
-    window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+    const link = document.createElement('a');
+    link.href = `${process.env.PUBLIC_URL}/Brajesh Resume.pdf`;
+    link.download = 'Brajesh Kumar Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     setTimeout(() => {
       setDownloadState('success');
       setTimeout(() => {
@@ -120,6 +124,8 @@ function App() {
       <Projects />
       <div className="divider"></div>
       <Experience />
+      <div className="divider"></div>
+      <Education />
       <BackToTop />
       <Footer />
     </>

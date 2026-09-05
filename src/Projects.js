@@ -9,12 +9,50 @@ const FILTERS = [
 
 const PROJECTS = [
   {
-    id: 'notification-platform',
-    title: 'PRD Alerting & Notification Platform',
+    id: 'notification-hub',
+    title: 'Notification Hub',
     tag: 'Backend Project',
     category: 'backend',
     accent: 'blue',
     icon: 'fas fa-bell',
+    description:
+      'An event-driven notification platform supporting Email, SMS, and WhatsApp communication workflows with asynchronous message processing and failure handling.',
+    highlights: [
+      'Event-driven delivery with Kafka',
+      'Retry & failure-handling workflows',
+      'RESTful APIs & audit logging',
+      'Dockerized & JUnit tested services',
+    ],
+    tech: ['Java', 'Spring Boot', 'Kafka', 'MySQL', 'Docker', 'JUnit'],
+    codeUrl: 'https://github.com/Brajeshkumar1107',
+    demoUrl: 'https://github.com/Brajeshkumar1107',
+  },
+  {
+    id: 'codearena',
+    title: 'CodeArena Compiler Platform',
+    tag: 'Backend Project',
+    category: 'backend',
+    accent: 'green',
+    icon: 'fas fa-code',
+    description:
+      'A code compilation and execution platform with isolated Docker-based runtimes, REST APIs for submission, execution, and result retrieval, and status tracking.',
+    highlights: [
+      'Docker-isolated execution workflows',
+      'Submission & execution status tracking',
+      'RESTful API + validation & exception handling',
+      'MySQL metadata persistence',
+    ],
+    tech: ['Java', 'Spring Boot', 'Docker', 'MySQL', 'REST APIs'],
+    codeUrl: 'https://github.com/Brajeshkumar1107',
+    demoUrl: 'https://github.com/Brajeshkumar1107',
+  },
+  {
+    id: 'notification-platform',
+    title: 'PRD Alerting & Notification Platform',
+    tag: 'Backend Project',
+    category: 'backend',
+    accent: 'purple',
+    icon: 'fas fa-bullhorn',
     description:
       'A scalable alerting and notification platform built with Java and Spring Boot to deliver reliable, event-driven notifications across multiple channels.',
     highlights: [
@@ -32,7 +70,7 @@ const PROJECTS = [
     title: 'Connect4 Game',
     tag: 'Full Stack Project',
     category: 'backend',
-    accent: 'green',
+    accent: 'blue',
     icon: 'fas fa-gamepad',
     description:
       'A full-stack Connect4 game with a Go-powered backend and a TypeScript React frontend, featuring real-time interactive gameplay.',
@@ -51,7 +89,7 @@ const PROJECTS = [
     title: 'Full Stack E-Commerce',
     tag: 'Internship Project',
     category: 'backend',
-    accent: 'purple',
+    accent: 'green',
     icon: 'fas fa-cart-shopping',
     description:
       'A full-stack e-commerce application built during the Code Alpha internship, allowing users to browse products, manage carts and place orders.',
@@ -70,7 +108,7 @@ const PROJECTS = [
     title: 'Microservices Config Server',
     tag: 'Backend Project',
     category: 'backend',
-    accent: 'blue',
+    accent: 'purple',
     icon: 'fas fa-gears',
     description:
       'A centralized configuration server for microservices, managing externalized configuration across distributed services with Spring Cloud Config.',
@@ -126,8 +164,8 @@ const PROJECTS = [
 
 const BUILD_STATS = [
   { number: '30+', label: 'Repositories on GitHub', icon: 'fas fa-folder-open', color: 'blue' },
-  { number: '6', label: 'Featured Projects', icon: 'fas fa-star', color: 'green' },
-  { number: '10+', label: 'Technologies Worked With', icon: 'fas fa-code', color: 'purple' },
+  { number: '8', label: 'Featured Projects', icon: 'fas fa-star', color: 'green' },
+  { number: '15+', label: 'Technologies Worked With', icon: 'fas fa-code', color: 'purple' },
   { number: '100%', label: 'Passion for Building', icon: 'fas fa-heart', color: 'orange' },
 ];
 

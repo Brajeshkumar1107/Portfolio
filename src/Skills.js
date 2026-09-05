@@ -1,12 +1,12 @@
 import React from 'react';
 
 const TECHNICAL_SKILLS = [
-  { name: 'Java', level: 90, icon: 'fab fa-java' },
+  { name: 'Java (8/11/17)', level: 92, icon: 'fab fa-java' },
   { name: 'Spring Boot', level: 90, icon: 'fas fa-leaf' },
-  { name: 'MySQL', level: 85, icon: 'fas fa-database' },
-  { name: 'REST APIs', level: 88, icon: 'fas fa-code' },
-  { name: 'HTML, CSS, JavaScript', level: 80, icon: 'fab fa-html5' },
-  { name: 'Git & GitHub', level: 85, icon: 'fab fa-github' },
+  { name: 'Spring MVC / Data JPA', level: 88, icon: 'fas fa-code-branch' },
+  { name: 'RESTful APIs', level: 90, icon: 'fas fa-server' },
+  { name: 'MySQL / SQL', level: 85, icon: 'fas fa-database' },
+  { name: 'Microservices & Spring Cloud', level: 82, icon: 'fas fa-sitemap' },
 ];
 
 const TOOLS = [
@@ -15,17 +15,20 @@ const TOOLS = [
   { name: 'Postman', icon: 'fas fa-paper-plane' },
   { name: 'Docker', icon: 'fab fa-docker' },
   { name: 'Maven', icon: 'fas fa-cubes' },
-  { name: 'JUnit', icon: 'fas fa-vial' },
-  { name: 'Git', icon: 'fab fa-git-alt' },
-  { name: 'Swagger', icon: 'fas fa-file-code' },
+  { name: 'JUnit 5', icon: 'fas fa-vial' },
+  { name: 'Mockito', icon: 'fas fa-flask' },
+  { name: 'Git & GitHub Actions', icon: 'fab fa-github' },
   { name: 'Linux', icon: 'fab fa-linux' },
+  { name: 'Kafka', icon: 'fas fa-stream' },
+  { name: 'JWT Auth', icon: 'fas fa-key' },
+  { name: 'Swagger', icon: 'fas fa-file-code' },
 ];
 
 const CORE_STRENGTHS = [
   { name: 'Problem Solving', icon: 'fas fa-puzzle-piece' },
   { name: 'Clean Code', icon: 'fas fa-code' },
-  { name: 'System Design', icon: 'fas fa-sitemap' },
-  { name: 'Continuous Learning', icon: 'fas fa-book-open' },
+  { name: 'System / API Design', icon: 'fas fa-sitemap' },
+  { name: 'Agile & SDLC', icon: 'fas fa-clipboard-list' },
 ];
 
 const IMPROVEMENT_STATS = [
@@ -44,7 +47,7 @@ const Skills = () => (
           <span>MY SKILLS</span>
         </div>
         <h2 className="section-title">Skills &amp; Expertise</h2>
-        <p className="section-subtitle">Technologies and tools I work with to build scalable, efficient and reliable applications.</p>
+        <p className="section-subtitle">Java, Spring Boot, Microservices, and modern tooling — building scalable, efficient and reliable applications end-to-end.</p>
       </div>
 
       <div className="row g-4">

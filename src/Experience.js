@@ -5,12 +5,12 @@ const experiences = [
     company: 'YourDOST',
     logoTop: 'Your',
     logoBottom: 'DOST',
-    role: 'Java Developer Intern',
-    duration: 'Jan 2026 - Jul 2026',
-    period: '7 Months',
+    role: 'Java Developer',
+    duration: 'Jan 2026 - Present',
+    period: 'Full-time',
     accent: 'blue',
     description:
-      'Working on backend development using Java, Spring Boot, Spring JDBC and REST APIs. Built appointment booking, communication routing, and multi-channel notification systems. Involved in production issue resolution, integration testing, automated workflows and compliance modules.',
+      'Developing and maintaining scalable backend services using Java, Spring Boot, Spring JDBC, REST APIs, and MySQL. Designing RESTful APIs for appointment booking, business workflows, and multi-channel notifications. Debugging production issues, improving reliability, and collaborating with cross-functional teams using Agile practices.',
     technologies: ['Java', 'Spring Boot', 'Spring JDBC', 'REST APIs', 'MySQL', 'JUnit', 'Mockito'],
   },
   {
@@ -22,16 +22,16 @@ const experiences = [
     period: '4 Months',
     accent: 'blue',
     description:
-      'Developed backend modules for IDP and Gateway projects using Spring Boot and JPA Criteria API. Implemented Spring Cloud Gateway for secure request routing and created an HTML-to-PDF module. Increased test coverage from 30% to 96% using JUnit and Mockito.',
+      'Developed backend modules for enterprise IDP and Gateway projects using Spring Boot and JPA Criteria API. Implemented Spring Cloud Gateway for secure request routing and created an HTML-to-PDF module. Increased automated test coverage from 30% to 96% using JUnit and Mockito.',
     technologies: ['Java', 'Spring Boot', 'Spring Cloud Gateway', 'JPA', 'MySQL', 'JUnit', 'Mockito'],
   },
 ];
 
 const EXP_STATS = [
-  { number: '1+', label: 'Year of Internship Experience', icon: 'fas fa-briefcase', color: 'blue' },
+  { number: '1+', label: 'Year of Full-time Experience', icon: 'fas fa-briefcase', color: 'blue' },
   { number: '2', label: 'Companies Worked With', icon: 'fas fa-building', color: 'green' },
   { number: '10+', label: 'Projects Contributed To', icon: 'fas fa-code', color: 'purple' },
-  { number: '100%', label: 'Learning & Growth', icon: 'fas fa-user', color: 'orange' },
+  { number: '96%', label: 'Test Coverage Achieved', icon: 'fas fa-vial', color: 'orange' },
   { number: 'Always', label: 'Building Better Solutions', icon: 'fas fa-chart-line', color: 'blue' },
 ];
 

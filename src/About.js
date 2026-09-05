@@ -30,9 +30,9 @@ const About = () => (
                 <span className="about-stat-label">Projects Completed</span>
               </div>
               <div className="about-stat">
-                <span className="about-stat-icon"><i className="fas fa-code"></i></span>
-                <span className="about-stat-number">100%</span>
-                <span className="about-stat-label">Dedication &amp; Commitment</span>
+                <span className="about-stat-icon"><i className="fas fa-trophy"></i></span>
+                <span className="about-stat-number">500+</span>
+                <span className="about-stat-label">DSA Problems Solved</span>
               </div>
               <div className="about-stat">
                 <span className="about-stat-icon"><i className="fas fa-users"></i></span>
@@ -51,18 +51,19 @@ const About = () => (
             </div>
 
             <h3 className="about-subtitle">
-              Building reliable software with Java &amp; Spring Boot
+              Building reliable backend systems with Java &amp; Spring Boot
             </h3>
 
             <p className="about-text">
-              I'm a backend engineer specializing in backend development, currently working as a
-              Backend Engineer Intern at YourDOST. I build scalable RESTful APIs and
-              production-grade services using Java, Spring Boot, and modern tooling.
+              I'm a Java Backend Engineer with 1 year of full-time experience developing
+              and supporting enterprise applications using Java, Spring Boot, J2EE, JDBC,
+              JPA, REST APIs, and MySQL at YourDOST.
             </p>
             <p className="about-text">
-              My focus is on clean architecture, data integrity, and writing well-tested,
-              maintainable code. I enjoy turning complex requirements into simple, robust
-              solutions and collaborating closely with teams to ship features that matter.
+              Experienced in backend development, application debugging, log analysis,
+              defect resolution, API troubleshooting, automated testing, and microservices.
+              Strong understanding of SQL, OOP, SDLC, Agile, and backend architecture with
+              hands-on experience building reliable and maintainable backend services.
             </p>
 
             <div className="about-feature-row">
