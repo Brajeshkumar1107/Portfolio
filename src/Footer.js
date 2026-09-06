@@ -43,33 +43,59 @@ const scrollTo = (e, id) => {
 
 const Footer = () => {
   const [email, setEmail] = useState('');
-  const [subscribeState, setSubscribeState] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+  const [message, setMessage] = useState('');
+  const [formState, setFormState] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+  const [formError, setFormError] = useState(''); // '' | 'email' | 'message' | 'server'
 
-  const handleSubscribe = async (e) => {
+  const resetForm = () => {
+    setFormState('idle');
+    setFormError('');
+  };
+
+  const clearError = () => {
+    if (formState === 'error') {
+      resetForm();
+    }
+  };
+
+  const handleMessageSubmit = async (e) => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(email)) {
-      setSubscribeState('error');
-      setTimeout(() => setSubscribeState('idle'), 3000);
+      setFormState('error');
+      setFormError('email');
       return;
     }
-    setSubscribeState('sending');
+    if (!message.trim() || message.trim().length < 10) {
+      setFormState('error');
+      setFormError('message');
+      return;
+    }
+
+    setFormState('sending');
+    setFormError('');
     try {
       const response = await fetch('https://formspree.io/f/mpwreozq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email, _subject: 'New newsletter subscription' }),
+        body: JSON.stringify({
+          email,
+          message,
+          _subject: 'New message from Portfolio visitor',
+        }),
       });
       if (response.ok) {
-        setSubscribeState('success');
+        setFormState('success');
         setEmail('');
-        setTimeout(() => setSubscribeState('idle'), 3000);
+        setMessage('');
+        setTimeout(resetForm, 6000);
       } else {
-        throw new Error('Subscription failed');
+        throw new Error('Send failed');
       }
     } catch (err) {
-      setSubscribeState('error');
-      setTimeout(() => setSubscribeState('idle'), 3000);
+      setFormState('error');
+      setFormError('server');
     }
   };
 
@@ -175,39 +201,98 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="footer-band-item footer-newsletter">
-          <div>
-            <h5>Stay Updated</h5>
-            <p>Get the latest updates about my projects and experience.</p>
-            <form className="footer-subscribe" onSubmit={handleSubscribe}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                aria-label="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <button type="submit" aria-label="Subscribe" disabled={subscribeState === 'sending'}>
-                {subscribeState === 'sending' ? (
-                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                ) : subscribeState === 'success' ? (
-                  <i className="fas fa-check"></i>
+        <div className="footer-band-item footer-connect">
+          <div className="connect-card">
+            <div className="connect-head">
+              <span className="connect-icon"><i className="fas fa-envelope-open-text"></i></span>
+              <div>
+                <h5>Send a Message</h5>
+                <p>Questions, collabs, or a friendly hello — I reply to every mail.</p>
+              </div>
+            </div>
+            <form className="connect-form" onSubmit={handleMessageSubmit} noValidate>
+              <div className="connect-field">
+                <label htmlFor="connect-email" className="connect-label">Your email</label>
+                <input
+                  type="email"
+                  id="connect-email"
+                  className="connect-input"
+                  placeholder="you@example.com"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    clearError();
+                  }}
+                  aria-invalid={formState === 'error' && formError === 'email'}
+                  aria-describedby="connect-msg"
+                />
+              </div>
+              <div className="connect-field">
+                <label htmlFor="connect-message" className="connect-label">Message</label>
+                <textarea
+                  id="connect-message"
+                  className="connect-input connect-textarea"
+                  rows="3"
+                  placeholder="Write your message here..."
+                  value={message}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    clearError();
+                  }}
+                  aria-invalid={formState === 'error' && formError === 'message'}
+                  aria-describedby="connect-msg"
+                />
+              </div>
+              <button type="submit" className="connect-submit" disabled={formState === 'sending'}>
+                {formState === 'sending' ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Sending…
+                  </>
+                ) : formState === 'success' ? (
+                  <>
+                    <i className="fas fa-circle-check"></i>
+                    Sent!
+                  </>
                 ) : (
-                  <i className="fas fa-paper-plane"></i>
+                  <>
+                    <i className="fas fa-paper-plane"></i>
+                    Send it
+                  </>
                 )}
               </button>
+              <div id="connect-msg" className="connect-msg-wrap" aria-live="polite">
+                {formState === 'success' && (
+                  <span className="connect-msg connect-msg--success">
+                    <i className="fas fa-circle-check"></i>
+                    Message sent — I'll get back to you soon!
+                  </span>
+                )}
+                {formState === 'error' && formError === 'email' && (
+                  <span className="connect-msg connect-msg--error">
+                    <i className="fas fa-circle-exclamation"></i>
+                    Please enter a valid email address.
+                  </span>
+                )}
+                {formState === 'error' && formError === 'message' && (
+                  <span className="connect-msg connect-msg--error">
+                    <i className="fas fa-circle-exclamation"></i>
+                    Please write a short message first.
+                  </span>
+                )}
+                {formState === 'error' && formError === 'server' && (
+                  <span className="connect-msg connect-msg--error">
+                    <i className="fas fa-circle-exclamation"></i>
+                    Could not send right now. Please try again later.
+                  </span>
+                )}
+              </div>
+              <p className="connect-note">
+                <i className="fas fa-lock"></i>
+                Delivered straight to my inbox — never shared.
+              </p>
             </form>
-            {subscribeState === 'success' && (
-              <span className="footer-subscribe-msg footer-subscribe-msg--success">
-                Thanks for subscribing!
-              </span>
-            )}
-            {subscribeState === 'error' && (
-              <span className="footer-subscribe-msg footer-subscribe-msg--error">
-                Please enter a valid email.
-              </span>
-            )}
           </div>
         </div>
 

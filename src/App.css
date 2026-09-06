@@ -3166,64 +3166,140 @@ button, .btn, a, .nav-link {
   flex-shrink: 0;
 }
 
-/* Newsletter */
-.footer-subscribe {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.85rem;
+/* Connect form */
+.footer-connect {
+  display: block;
 }
 
-.footer-subscribe input {
-  flex: 1;
-  min-width: 0;
-  padding: 0.6rem 0.9rem;
+.connect-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.4rem;
+}
+
+.connect-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.connect-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.connect-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.connect-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.connect-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.connect-input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: var(--bg-alt);
+  background: var(--bg);
   color: var(--text);
   font-size: 0.88rem;
+  font-family: inherit;
   outline: none;
-  transition: border-color 0.2s ease;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.footer-subscribe input:focus {
+.connect-input:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
 }
 
-.footer-subscribe button {
-  width: 46px;
+.connect-input[aria-invalid="true"] {
+  border-color: #dc3545;
+}
+
+.connect-textarea {
+  min-height: 84px;
+}
+
+.connect-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
   border: none;
   border-radius: 10px;
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  flex-shrink: 0;
 }
 
-.footer-subscribe button:hover:not(:disabled) {
+.connect-submit:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(13, 110, 253, 0.3);
 }
 
-.footer-subscribe button:disabled {
+.connect-submit:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-.footer-subscribe-msg {
-  display: block;
-  margin-top: 0.5rem;
+.connect-msg-wrap {
+  min-height: 1.1rem;
+}
+
+.connect-msg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.82rem;
   font-weight: 600;
 }
 
-.footer-subscribe-msg--success {
+.connect-msg--success {
   color: #16a34a;
 }
 
-.footer-subscribe-msg--error {
+.connect-msg--error {
   color: #dc3545;
+}
+
+.connect-note {
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  margin: 0.35rem 0 0;
+}
+
+.connect-note i {
+  margin-right: 0.3rem;
+  color: var(--accent);
 }
 
 .footer-heart {
