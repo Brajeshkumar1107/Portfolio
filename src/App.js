@@ -37,7 +37,7 @@ function App() {
 
   // Add scroll detection for navbar + active section highlighting
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'education'];
+    const sectionIds = ['home', 'about', 'skills', 'experience', 'projects', 'education'];
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
@@ -121,9 +121,9 @@ function App() {
       <div className="divider"></div>
       <Skills />
       <div className="divider"></div>
-      <Projects />
-      <div className="divider"></div>
       <Experience />
+      <div className="divider"></div>
+      <Projects />
       <div className="divider"></div>
       <Education />
       <BackToTop />
