@@ -24,8 +24,8 @@ const PROJECTS = [
       'Dockerized & JUnit tested services',
     ],
     tech: ['Java', 'Spring Boot', 'Kafka', 'MySQL', 'Docker', 'JUnit'],
-    codeUrl: 'https://github.com/Brajeshkumar1107',
-    demoUrl: 'https://github.com/Brajeshkumar1107',
+    codeUrl: 'https://github.com/Brajeshkumar1107/PRD-Alerting-Notification-Platform',
+    demoUrl: 'https://github.com/Brajeshkumar1107/PRD-Alerting-Notification-Platform',
   },
   {
     id: 'codearena',
@@ -43,8 +43,8 @@ const PROJECTS = [
       'MySQL metadata persistence',
     ],
     tech: ['Java', 'Spring Boot', 'Docker', 'MySQL', 'REST APIs'],
-    codeUrl: 'https://github.com/Brajeshkumar1107',
-    demoUrl: 'https://github.com/Brajeshkumar1107',
+    codeUrl: 'https://github.com/Brajeshkumar1107/Code-Arena',
+    demoUrl: 'https://github.com/Brajeshkumar1107/Code-Arena',
   },
   {
     id: 'notification-platform',
@@ -82,7 +82,7 @@ const PROJECTS = [
     ],
     tech: ['Go', 'TypeScript', 'React', 'REST APIs'],
     codeUrl: 'https://github.com/Brajeshkumar1107/Emitrr-Assignment-Backend',
-    demoUrl: 'https://github.com/Brajeshkumar1107/Emitrr-Assignment-Frontend',
+    demoUrl: 'https://emitrr-assignment-frontend.vercel.app',
   },
   {
     id: 'ecommerce',
@@ -157,8 +157,8 @@ const PROJECTS = [
       'Modern, accessible UI',
     ],
     tech: ['React', 'JavaScript', 'CSS3', 'Bootstrap'],
-    codeUrl: 'https://github.com/Brajeshkumar1107/brajesh',
-    demoUrl: 'https://github.com/Brajeshkumar1107/brajesh',
+    codeUrl: 'https://github.com/Brajeshkumar1107/Portfolio',
+    demoUrl: 'https://portfolio-eight-steel-57.vercel.app',
   },
 ];
 
