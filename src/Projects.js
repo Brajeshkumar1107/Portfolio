@@ -171,11 +171,26 @@ const BUILD_STATS = [
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [showAll, setShowAll] = useState(false);
 
-  const visibleProjects =
+  const INITIAL_SHOWN = 3;
+
+  const filteredProjects =
     activeFilter === 'all'
       ? PROJECTS
       : PROJECTS.filter((p) => p.category === activeFilter);
+
+  const visibleProjects =
+    showAll || activeFilter !== 'all'
+      ? filteredProjects
+      : filteredProjects.slice(0, INITIAL_SHOWN);
+
+  const hasMore = filteredProjects.length > INITIAL_SHOWN;
+
+  const handleFilterChange = (id) => {
+    setActiveFilter(id);
+    setShowAll(false);
+  };
 
   return (
     <section id="projects" className="py-5" data-aos="fade-up">
@@ -200,7 +215,7 @@ const Projects = () => {
               key={id}
               type="button"
               className={`project-filter ${activeFilter === id ? 'active' : ''}`}
-              onClick={() => setActiveFilter(id)}
+              onClick={() => handleFilterChange(id)}
             >
               <i className={icon}></i>
               <span>{label}</span>
@@ -277,6 +292,21 @@ const Projects = () => {
             ))
           )}
         </div>
+
+        {/* Show more / less */}
+        {hasMore && (
+          <div className="projects-show-more text-center mt-4">
+            <button
+              type="button"
+              className="projects-toggle-btn"
+              onClick={() => setShowAll((s) => !s)}
+              aria-expanded={showAll}
+            >
+              <i className={`fas ${showAll ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+              {showAll ? 'Show Less' : `View All Projects (${filteredProjects.length})`}
+            </button>
+          </div>
+        )}
 
         {/* Always Building banner */}
         <div className="build-banner mt-4">

@@ -10,7 +10,7 @@ import Projects from './Projects';
 import Experience from './Experience';
 import Education from './Education';
 import Footer from './Footer';
-import BackToTop from './BackToTop';
+
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -126,7 +126,6 @@ function App() {
       <Projects />
       <div className="divider"></div>
       <Education />
-      <BackToTop />
       <Footer />
     </>
   );

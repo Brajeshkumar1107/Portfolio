@@ -4,32 +4,18 @@ const QUICK_LINKS = [
   { id: 'home', label: 'Home', icon: 'fas fa-house' },
   { id: 'about', label: 'About', icon: 'fas fa-user' },
   { id: 'skills', label: 'Skills', icon: 'fas fa-layer-group' },
-  { id: 'projects', label: 'Projects', icon: 'fas fa-briefcase' },
-  { id: 'experience', label: 'Experience', icon: 'fas fa-laptop' },
+  { id: 'experience', label: 'Experience', icon: 'fas fa-briefcase' },
+  { id: 'projects', label: 'Projects', icon: 'fas fa-code-branch' },
+  { id: 'footer-contact-card', label: 'Contact', icon: 'fas fa-envelope' },
 ];
 
-const WHAT_I_DO = [
-  { label: 'Backend Development', icon: 'fas fa-code' },
-  { label: 'RESTful APIs', icon: 'fas fa-database' },
-  { label: 'System Design', icon: 'fas fa-shield-halved' },
-  { label: 'Database Design', icon: 'fas fa-cloud' },
-  { label: 'Performance Optimization', icon: 'fas fa-gauge-high' },
-  { label: 'Testing & Debugging', icon: 'fas fa-flask' },
-];
-
-const TECH_STACK = [
+const SKILLS = [
   { label: 'Java', icon: 'fab fa-java' },
   { label: 'Spring Boot', icon: 'fas fa-leaf' },
   { label: 'MySQL', icon: 'fas fa-database' },
-  { label: 'REST APIs', icon: 'fas fa-code' },
-  { label: 'Spring MVC', icon: 'fas fa-leaf' },
-  { label: 'JPA / Hibernate', icon: 'fas fa-cubes' },
-  { label: 'JUnit', icon: 'fas fa-vial' },
-  { label: 'Mockito', icon: 'fas fa-flask' },
-  { label: 'Git', icon: 'fab fa-git-alt' },
   { label: 'Docker', icon: 'fab fa-docker' },
-  { label: 'Maven', icon: 'fas fa-cube' },
-  { label: 'Postman', icon: 'fas fa-paper-plane' },
+  { label: 'AWS', icon: 'fab fa-aws' },
+  { label: 'REST APIs', icon: 'fas fa-code' },
 ];
 
 const scrollTo = (e, id) => {
@@ -42,277 +28,231 @@ const scrollTo = (e, id) => {
 };
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [formState, setFormState] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
-  const [formError, setFormError] = useState(''); // '' | 'email' | 'message' | 'server'
+  const [form, setForm] = useState({ email: '', message: '' });
+  const [formState, setFormState] = useState('idle');
 
-  const resetForm = () => {
-    setFormState('idle');
-    setFormError('');
+  const year = new Date().getFullYear();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    if (formState === 'error') setFormState('idle');
   };
 
-  const clearError = () => {
-    if (formState === 'error') {
-      resetForm();
-    }
-  };
-
-  const handleMessageSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(form.email) || !form.message.trim()) {
       setFormState('error');
-      setFormError('email');
       return;
     }
-    if (!message.trim() || message.trim().length < 10) {
-      setFormState('error');
-      setFormError('message');
-      return;
-    }
-
     setFormState('sending');
-    setFormError('');
     try {
-      const response = await fetch('https://formspree.io/f/mpwreozq', {
+      const res = await fetch('https://formspree.io/f/mpwreozq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          email,
-          message,
-          _subject: 'New message from Portfolio visitor',
+          email: form.email,
+          message: form.message,
+          _subject: `Portfolio message from ${form.email}`,
         }),
       });
-      if (response.ok) {
+      if (res.ok) {
         setFormState('success');
-        setEmail('');
-        setMessage('');
-        setTimeout(resetForm, 6000);
+        setForm({ email: '', message: '' });
+        setTimeout(() => setFormState('idle'), 6000);
       } else {
-        throw new Error('Send failed');
+        throw new Error('Request failed');
       }
-    } catch (err) {
+    } catch {
       setFormState('error');
-      setFormError('server');
     }
   };
 
   return (
-  <footer id="connect" className="footer">
-    <div className="container">
-      <div className="footer-grid">
-        {/* Brand + contact */}
-        <div className="footer-col footer-about">
-          <a className="footer-brand" href="#home" onClick={(e) => scrollTo(e, 'home')}>
-            <span className="footer-brand-logo"><i className="fas fa-code"></i></span>
-            <span className="footer-brand-name">Bra<span className="text-accent">jesh</span></span>
-          </a>
-          <p className="footer-desc">
-            Backend Engineer &amp; Full Stack Developer who loves building scalable, efficient and
-            impactful web applications.
-          </p>
-          <ul className="footer-contact">
-            <li>
-              <span className="footer-contact-icon"><i className="fas fa-envelope"></i></span>
-              <a href="mailto:brajeshsharma112004@gmail.com">brajeshsharma112004@gmail.com</a>
-            </li>
-            <li>
-              <span className="footer-contact-icon"><i className="fas fa-phone"></i></span>
-              <a href="tel:+917061290269">+91 7061290269</a>
-            </li>
-            <li>
-              <span className="footer-contact-icon"><i className="fas fa-location-dot"></i></span>
+    <footer id="connect" className="footer">
+      <div className="container">
+
+        {/* Top CTA */}
+        <div className="footer-cta">
+          <div className="footer-cta-line" aria-hidden="true"></div>
+          <div className="footer-cta-content">
+            <span className="footer-cta-kicker">Let's Connect</span>
+            <h2 className="footer-cta-heading">
+              Let's Build Something <span className="text-accent">Amazing</span> Together
+            </h2>
+            <p className="footer-cta-sub">
+              Open to new opportunities, collaborations, and interesting ideas.
+            </p>
+            <span className="footer-cta-heart" aria-hidden="true"><i className="fas fa-heart"></i></span>
+          </div>
+          <div className="footer-cta-line" aria-hidden="true"></div>
+        </div>
+
+        {/* Main card */}
+        <div className="footer-card">
+
+          {/* Left — Branding */}
+          <div className="footer-card-section footer-card--brand">
+            <a className="footer-brand" href="#home" onClick={(e) => scrollTo(e, 'home')}>
+              <span className="footer-brand-logo">&lt;/&gt;</span>
+              <span className="footer-brand-name">Bra<span className="text-accent">jesh</span></span>
+            </a>
+            <p className="footer-brand-desc">
+              Building scalable solutions, learning continuously, and turning ideas into reality.
+            </p>
+            <div className="footer-socials">
+              <a href="https://github.com/Brajeshkumar1107" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                <i className="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/brajeshsharma1107/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://portfolio-eight-steel-57.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Portfolio" title="Portfolio">
+                <i className="fas fa-globe"></i>
+              </a>
+              <a href="mailto:brajeshsharma112004@gmail.com" aria-label="Email" title="Email">
+                <i className="fas fa-envelope"></i>
+              </a>
+            </div>
+            <div className="footer-location">
+              <i className="fas fa-location-dot footer-location-icon" aria-hidden="true"></i>
               <span>Begusarai, Bihar, India</span>
-            </li>
-            <li>
-              <span className="footer-contact-icon"><i className="fas fa-globe"></i></span>
-              <span>brajesh.in</span>
-            </li>
-          </ul>
-          <div className="footer-socials">
-            <a href="https://github.com/Brajeshkumar1107" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/brajeshsharma1107/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://leetcode.com/u/Brajesh-Kumar/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
-              <i className="fas fa-code"></i>
-            </a>
-            <a href="mailto:brajeshsharma112004@gmail.com" aria-label="Email">
-              <i className="fas fa-envelope"></i>
-            </a>
+            </div>
+            <div className="footer-status">
+              <span className="footer-status-dot"></span>
+              <span>Open to opportunities</span>
+            </div>
+            <div className="footer-quote">
+              <i className="fas fa-quote-left footer-quote-icon" aria-hidden="true"></i>
+              <p>
+                Always open to meaningful conversations and exciting opportunities.
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Quick Links */}
-        <div className="footer-col">
-          <h4 className="footer-heading"><span className="footer-heading-dot"></span>Quick Links</h4>
-          <ul className="footer-list">
-            {QUICK_LINKS.map(({ id, label, icon }) => (
-              <li key={id}>
-                <a href={`#${id}`} onClick={(e) => scrollTo(e, id)}>
-                  <i className={icon}></i>
-                  <span>{label}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* What I Do */}
-        <div className="footer-col">
-          <h4 className="footer-heading"><span className="footer-heading-dot"></span>What I Do</h4>
-          <ul className="footer-list">
-            {WHAT_I_DO.map(({ label, icon }) => (
-              <li key={label}>
-                <span className="footer-list-static">
-                  <i className={icon}></i>
-                  <span>{label}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Tech Stack */}
-        <div className="footer-col">
-          <h4 className="footer-heading"><span className="footer-heading-dot"></span>Tech Stack</h4>
-          <div className="footer-tech-grid">
-            {TECH_STACK.map(({ label, icon }) => (
-              <span className="footer-tech-chip" key={label}>
-                <i className={icon}></i>
-                <span>{label}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Connect band */}
-      <div className="footer-band">
-        <div className="footer-band-item">
-          <span className="footer-band-icon"><i className="fas fa-heart"></i></span>
-          <div>
-            <h5>Let's Connect!</h5>
-            <p>I'm always open to discussing new opportunities, collaborations, or just a friendly chat.</p>
-          </div>
-        </div>
-
-        <div className="footer-band-item footer-connect">
-          <div className="connect-card">
-            <div className="connect-head">
-              <span className="connect-icon"><i className="fas fa-envelope-open-text"></i></span>
-              <div>
-                <h5>Send a Message</h5>
-                <p>Questions, collabs, or a friendly hello — I reply to every mail.</p>
+          {/* Middle — Quick Links + Skills */}
+          <div className="footer-card-section footer-card--middle">
+            <div className="footer-middle-cols">
+              <div className="footer-middle-col">
+                <h4 className="footer-col-title">Quick Links</h4>
+                <ul className="footer-links">
+                  {QUICK_LINKS.map(({ id, label, icon }) => (
+                    <li key={id}>
+                      <a href={`#${id}`} onClick={(e) => scrollTo(e, id)}>
+                        <i className={icon}></i>
+                        <span>{label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="footer-middle-col">
+                <h4 className="footer-col-title">Featured Skills</h4>
+                <ul className="footer-skill-list">
+                  {SKILLS.map(({ label, icon }) => (
+                    <li key={label}>
+                      <i className={icon}></i>
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-            <form className="connect-form" onSubmit={handleMessageSubmit} noValidate>
-              <div className="connect-field">
-                <label htmlFor="connect-email" className="connect-label">Your email</label>
-                <input
-                  type="email"
-                  id="connect-email"
-                  className="connect-input"
-                  placeholder="you@example.com"
-                  autoComplete="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    clearError();
-                  }}
-                  aria-invalid={formState === 'error' && formError === 'email'}
-                  aria-describedby="connect-msg"
-                />
+            <div className="footer-motivation">
+              <i className="fas fa-rocket" aria-hidden="true"></i>
+              <span>Constantly learning, constantly building.</span>
+            </div>
+          </div>
+
+          {/* Right — Contact Form */}
+          <div className="footer-card-section footer-card--contact" id="footer-contact-card">
+            <h4 className="footer-contact-title">Send a Message</h4>
+            <p className="footer-contact-desc">
+              Questions, opportunities, or just a friendly hello — I'd love to hear from you.
+            </p>
+            <form className="footer-contact-form" onSubmit={handleSubmit} noValidate>
+              <div className="footer-field">
+                <label htmlFor="footer-email">Your Email</label>
+                <div className="footer-field-wrap">
+                  <i className="fas fa-envelope footer-field-icon" aria-hidden="true"></i>
+                  <input
+                    id="footer-email"
+                    name="email"
+                    type="email"
+                    className="footer-input"
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    disabled={formState === 'sending'}
+                  />
+                </div>
               </div>
-              <div className="connect-field">
-                <label htmlFor="connect-message" className="connect-label">Message</label>
-                <textarea
-                  id="connect-message"
-                  className="connect-input connect-textarea"
-                  rows="3"
-                  placeholder="Write your message here..."
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    clearError();
-                  }}
-                  aria-invalid={formState === 'error' && formError === 'message'}
-                  aria-describedby="connect-msg"
-                />
+              <div className="footer-field">
+                <label htmlFor="footer-message">Message</label>
+                <div className="footer-field-wrap">
+                  <i className="fas fa-comment-dots footer-field-icon" aria-hidden="true"></i>
+                  <textarea
+                    id="footer-message"
+                    name="message"
+                    className="footer-textarea"
+                    placeholder="Write your message here..."
+                    rows="4"
+                    value={form.message}
+                    onChange={handleChange}
+                    disabled={formState === 'sending'}
+                  ></textarea>
+                </div>
               </div>
-              <button type="submit" className="connect-submit" disabled={formState === 'sending'}>
+              <div className="footer-submit-msg" aria-live="polite">
+                {formState === 'success' && (
+                  <span className="footer-submit-msg--success">
+                    <i className="fas fa-circle-check"></i> Thanks! Your message has been sent.
+                  </span>
+                )}
+                {formState === 'error' && (
+                  <span className="footer-submit-msg--error">
+                    <i className="fas fa-circle-exclamation"></i> Please add a valid email and your message.
+                  </span>
+                )}
+              </div>
+              <button type="submit" className="footer-submit-btn" disabled={formState === 'sending'}>
                 {formState === 'sending' ? (
-                  <>
-                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Sending…
-                  </>
-                ) : formState === 'success' ? (
-                  <>
-                    <i className="fas fa-circle-check"></i>
-                    Sent!
-                  </>
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 ) : (
                   <>
                     <i className="fas fa-paper-plane"></i>
-                    Send it
+                    <span>Send Message</span>
                   </>
                 )}
               </button>
-              <div id="connect-msg" className="connect-msg-wrap" aria-live="polite">
-                {formState === 'success' && (
-                  <span className="connect-msg connect-msg--success">
-                    <i className="fas fa-circle-check"></i>
-                    Message sent — I'll get back to you soon!
-                  </span>
-                )}
-                {formState === 'error' && formError === 'email' && (
-                  <span className="connect-msg connect-msg--error">
-                    <i className="fas fa-circle-exclamation"></i>
-                    Please enter a valid email address.
-                  </span>
-                )}
-                {formState === 'error' && formError === 'message' && (
-                  <span className="connect-msg connect-msg--error">
-                    <i className="fas fa-circle-exclamation"></i>
-                    Please write a short message first.
-                  </span>
-                )}
-                {formState === 'error' && formError === 'server' && (
-                  <span className="connect-msg connect-msg--error">
-                    <i className="fas fa-circle-exclamation"></i>
-                    Could not send right now. Please try again later.
-                  </span>
-                )}
-              </div>
-              <p className="connect-note">
-                <i className="fas fa-lock"></i>
+              <p className="footer-contact-note">
+                <i className="fas fa-lock" aria-hidden="true"></i>
                 Delivered straight to my inbox — never shared.
               </p>
             </form>
           </div>
         </div>
 
-        <div className="footer-band-item footer-thanks">
-          <span className="footer-thanks-icon"><i className="fas fa-laptop-code"></i></span>
-          <div>
-            <h5>Thanks for visiting!</h5>
-            <p>Let's build something amazing together. <i className="fas fa-heart footer-heart"></i></p>
+        {/* Bottom */}
+        <div className="footer-bottom">
+          <div className="footer-bottom-left">
+            <span>&copy; {year} Brajesh Kumar. All rights reserved.</span>
+            <span className="footer-built">
+              Built with <i className="fas fa-heart footer-heart" aria-hidden="true"></i> using React
+            </span>
+          </div>
+          <div className="footer-bottom-right">
+            <a href="#privacy">Privacy Policy</a>
+            <span className="footer-bottom-sep">|</span>
+            <a href="#terms">Terms of Service</a>
+            <span className="footer-bottom-sep">|</span>
+            <a href="#sitemap">Sitemap</a>
           </div>
         </div>
       </div>
-
-      <div className="footer-bottom">
-        <span>&copy; {new Date().getFullYear()} Brajesh Kumar. All rights reserved.</span>
-        <span className="footer-made">
-          Built with <i className="fas fa-heart footer-heart"></i> using React
-        </span>
-      </div>
-    </div>
-  </footer>
+    </footer>
   );
 };
 
