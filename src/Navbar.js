@@ -17,7 +17,7 @@ const Navbar = ({ isScrolled, handleNavClick, scrollToSection, activeSection, ha
         onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
       >
         <span className="brand-logo">
-          <i className="fas fa-code"></i>
+          <img src={`${process.env.PUBLIC_URL}/brand-logo.png`} alt="Brajesh Kumar logo" width="42" height="42" />
         </span>
         <span className="brand-name">Brajesh</span>
       </a>

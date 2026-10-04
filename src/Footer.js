@@ -95,7 +95,7 @@ const Footer = () => {
           {/* Left — Branding */}
           <div className="footer-card-section footer-card--brand">
             <a className="footer-brand" href="#home" onClick={(e) => scrollTo(e, 'home')}>
-              <span className="footer-brand-logo">&lt;/&gt;</span>
+              <span className="footer-brand-logo"><img src={`${process.env.PUBLIC_URL}/brand-logo.png`} alt="Brajesh Kumar logo" width="42" height="42" /></span>
               <span className="footer-brand-name">Bra<span className="text-accent">jesh</span></span>
             </a>
             <p className="footer-brand-desc">

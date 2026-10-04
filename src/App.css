@@ -180,6 +180,15 @@ button, .btn, a, .nav-link {
   color: var(--accent);
   font-size: 1.15rem;
   transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
 .brand-name {
@@ -2890,6 +2899,15 @@ button, .btn, a, .nav-link {
   font-size: 0.85rem;
   font-weight: 800;
   font-family: monospace;
+  overflow: hidden;
+}
+
+.footer-brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
 .footer-brand-name {
