@@ -30,21 +30,21 @@ const PROJECTS = [
   {
     id: 'codearena',
     title: 'CodeArena Compiler Platform',
-    tag: 'Backend Project',
+    tag: 'Full Stack Project',
     category: 'backend',
     accent: 'green',
     icon: 'fas fa-code',
     description:
-      'A code compilation and execution platform with isolated Docker-based runtimes, REST APIs for submission, execution, and result retrieval, and status tracking.',
+      'A full-stack code compilation and execution platform with isolated Docker-based runtimes, a live web interface, REST APIs for submission, execution, and result retrieval, and status tracking.',
     highlights: [
       'Docker-isolated execution workflows',
-      'Submission & execution status tracking',
+      'Live web frontend with real-time result tracking',
       'RESTful API + validation & exception handling',
       'MySQL metadata persistence',
     ],
     tech: ['Java', 'Spring Boot', 'Docker', 'MySQL', 'REST APIs'],
     codeUrl: 'https://github.com/Brajeshkumar1107/Code-Arena',
-    demoUrl: 'https://github.com/Brajeshkumar1107/Code-Arena',
+    demoUrl: 'https://code-arena-frontend-two.vercel.app/',
   },
   {
     id: 'notification-platform',
