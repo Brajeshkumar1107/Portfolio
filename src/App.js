@@ -60,7 +60,7 @@ function App() {
   const handleDownload = () => {
     setDownloadState('downloading');
     const link = document.createElement('a');
-    link.href = `${process.env.PUBLIC_URL}/Brajesh Resume.pdf`;
+    link.href = `${process.env.PUBLIC_URL}/Brajesh Kumar Full Stack Developer.pdf`;
     link.download = 'Brajesh Kumar Resume.pdf';
     document.body.appendChild(link);
     link.click();
