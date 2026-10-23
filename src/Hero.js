@@ -30,7 +30,7 @@ const Hero = ({ displayText, handleDownload, downloadState }) => (
           <div className="hero-cta mb-4">
             <button
               className={`btn btn-primary btn-lg ${downloadState}`}
-              onClick={handleDownload}
+              onClick={() => handleDownload('hero')}
               disabled={downloadState === 'downloading'}
             >
               {downloadState === 'downloading' ? (

@@ -40,7 +40,7 @@ const Navbar = ({ isScrolled, handleNavClick, scrollToSection, activeSection, ha
         </ul>
         <button
           className={`btn btn-primary nav-resume-btn ${downloadState}`}
-          onClick={handleDownload}
+          onClick={() => handleDownload('navbar')}
           disabled={downloadState === 'downloading'}
         >
           {downloadState === 'downloading' ? (

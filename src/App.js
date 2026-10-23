@@ -18,6 +18,7 @@ function App() {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [downloadState, setDownloadState] = useState('idle');
+  const [downloadSource, setDownloadSource] = useState(null);
 
   const fullText = "Hi, I'm Brajesh Kumar";
 
@@ -57,7 +58,8 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleDownload = () => {
+  const handleDownload = (source) => {
+    setDownloadSource(source);
     setDownloadState('downloading');
     const link = document.createElement('a');
     link.href = `${process.env.PUBLIC_URL}/Brajesh Kumar Full Stack Developer.pdf`;
@@ -69,6 +71,7 @@ function App() {
       setDownloadState('success');
       setTimeout(() => {
         setDownloadState('idle');
+        setDownloadSource(null);
       }, 2000);
     }, 500);
   };
@@ -114,8 +117,8 @@ function App() {
       <div className="bubble"></div>
       <div className="bubble"></div>
       <div className="bubble"></div>
-      <Navbar isScrolled={isScrolled} handleNavClick={handleNavClick} scrollToSection={scrollToSection} activeSection={activeSection} handleDownload={handleDownload} downloadState={downloadState} />
-      <Hero displayText={displayText} handleDownload={handleDownload} downloadState={downloadState} /> 
+      <Navbar isScrolled={isScrolled} handleNavClick={handleNavClick} scrollToSection={scrollToSection} activeSection={activeSection} handleDownload={handleDownload} downloadState={downloadSource === 'navbar' ? downloadState : 'idle'} />
+      <Hero displayText={displayText} handleDownload={handleDownload} downloadState={downloadSource === 'hero' ? downloadState : 'idle'} /> 
       <div className="divider"></div>
       <About /> 
       <div className="divider"></div>
